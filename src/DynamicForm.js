@@ -9,7 +9,8 @@ function DynamicForm(props)  {
                 <label>{input.label}</label>
                 <Field
                     name={input.name}
-                    render={(prop) => {
+                >
+                    {prop => {
                         const { field } = prop;
                         return (
                             <input
@@ -19,7 +20,7 @@ function DynamicForm(props)  {
                                 onChange={field.onChange} />
                         );
                     }}
-                />
+                </Field>
             </Fragment>
         );
     }
