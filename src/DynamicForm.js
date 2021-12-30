@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Formik, Field } from 'formik';
 import './App.css';
 
-class DynamicForm extends Component {
-    renderCheckBox(input) {
+function DynamicForm(props)  {
+    const renderCheckBox = (input) => {
         return (
             <Fragment key={input.name}>
                 <label>{input.label}</label>
@@ -25,7 +25,7 @@ class DynamicForm extends Component {
         );
     }
 
-    renderTextArea(input) {
+    const renderTextArea = (input) => {
         return (
             <Fragment key={input.name}>
                 <label>{input.label}</label>
@@ -49,8 +49,7 @@ class DynamicForm extends Component {
         );
     }
 
-    renderSelect(input) {
-
+    const renderSelect = (input) => {
         return (
             <Fragment key={input.name}>
                 <label>{input.label}</label>
@@ -80,18 +79,18 @@ class DynamicForm extends Component {
         );
     }
 
-    renderFields(inputs) {
+    const renderFields = (inputs) => {
         return inputs.map(input => {
             if (input.type === 'select') {
-                return this.renderSelect(input);
+                return renderSelect(input);
             }
 
             if (input.type === 'checkbox') {
-                return this.renderCheckBox(input);
+                return renderCheckBox(input);
             }
 
             if (input.type === 'textarea') {
-                return this.renderTextArea(input);
+                return renderTextArea(input);
             }
 
             return (
@@ -119,8 +118,8 @@ class DynamicForm extends Component {
         })
     }
 
-    getInitialValues(inputs) {
-        //declare an empty initialValues object
+    const getInitialValues = (inputs) => {
+        // declare an empty initialValues object
         const initialValues = {};
         // loop over fields array
         // if prop does not exit in the initialValues object,
@@ -135,14 +134,14 @@ class DynamicForm extends Component {
         return initialValues;
     }
 
-    render() {
-        const initialValues = this.getInitialValues(this.props.fields);
+    //const render = () => {
+        const initialValues = getInitialValues(props.fields);
         return (
             <div className="app">
                 <h1>Dynamic Form</h1>
                 <Formik
                     onSubmit={(values) => { console.log(values) }}
-                    validationSchema={this.props.validation}
+                    validationSchema={props.validation}
                     initialValues={initialValues}
                     render={(form) => {
                         const numErrors =  Object.keys(form.errors).length;
@@ -159,7 +158,7 @@ class DynamicForm extends Component {
                                 <div className={errorMessageShow}>
                                     Please correct the errors below
                                 </div>
-                                {this.renderFields(this.props.fields)}
+                                {renderFields(props.fields)}
                                 <button type='submit' className='btn'>Submit</button>
                             </form>
                         </div>
@@ -167,7 +166,7 @@ class DynamicForm extends Component {
                 />
             </div>
         );
-    }
+    //}
 }
 
 export default DynamicForm;
