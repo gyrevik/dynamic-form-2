@@ -140,7 +140,8 @@ function DynamicForm(props)  {
                 onSubmit={(values) => { console.log(values) }}
                 validationSchema={props.validation}
                 initialValues={initialValues}
-                render={(form) => {
+            >
+                {form => {
                     const numErrors =  Object.keys(form.errors).length;
                     let legitError = false;
                     if (numErrors > 0)
@@ -150,17 +151,20 @@ function DynamicForm(props)  {
                                 legitError = true;
                         });
                     const errorMessageShow = numErrors && legitError ? 'error' : 'hidden';
-                    return <div>
-                        <form onSubmit={form.handleSubmit}>
-                            <div className={errorMessageShow}>
-                                Please correct the errors below
-                            </div>
-                            {renderFields(props.fields)}
-                            <button type='submit' className='btn'>Submit</button>
-                        </form>
-                    </div>
+                    return (
+                        <div>
+                            <form onSubmit={form.handleSubmit}>
+                                <div className={errorMessageShow}>
+                                    Please correct the errors below
+                                </div>
+                                {renderFields(props.fields)}
+                                <button type='submit' className='btn'>Submit</button>
+                            </form>
+                        </div>
+                    )
                 }}
-            />
+            </Formik>
+
         </div>
     );
 }
