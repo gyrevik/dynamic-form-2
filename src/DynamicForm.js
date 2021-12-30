@@ -120,8 +120,8 @@ class DynamicForm extends Component {
   getInitialValues(inputs) {
     //declare an empty initialValues object
     const initialValues = {};
-    //loop loop over fields array
-    //if prop does not exit in the initialValues object,
+    // loop over fields array
+    // if prop does not exit in the initialValues object,
     // pluck off the name and value props and add it to the initialValues object;
     inputs.forEach(field => {
       if(!initialValues[field.name]) {

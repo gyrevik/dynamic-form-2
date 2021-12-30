@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import validation from './validation';
+import DynamicForm from './DynamicForm';
 
 function App() {
+  const fields = [
+    {label: 'First Name', type: 'input', name: 'firstName', value: 'Abdi'},
+    {label: 'Last Name', type: 'input', name: 'lastName', value: 'Ahmed'},
+    {label: 'City', type: 'input', name: 'city', value: 'London'},
+    {label: 'Address', type: 'input', name: 'address', value: '10 FSS Street'},
+    {label: 'Occupation', type: 'select', data: ['Teacher', 'Software Engineer', 'Doctor', 'Lawyer'], name: 'occupation', value: 'Please Select'},
+    {label: 'Message', type: 'textarea', name: 'message', value: ''},
+    {label: 'Agree to Terms & Conditions', type: 'checkbox', name: 'terms', value: false},
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DynamicForm fields={fields} validation={validation} />
   );
 }
 
