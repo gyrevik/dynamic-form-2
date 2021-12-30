@@ -98,7 +98,8 @@ function DynamicForm(props)  {
                     <div>
                         <Field
                             name={input.name}
-                            render={(props) => {
+                        >
+                            {props => {
                                 const { field } = props;
                                 const { errors, touched } = props.form;
                                 const hasError = errors[input.name] && touched[input.name] ? 'hasError' : '';
@@ -110,7 +111,10 @@ function DynamicForm(props)  {
                                     />
                                 );
                             }}
-                        />
+                        </Field>
+
+
+
                     </div>
                 </div>
             );
