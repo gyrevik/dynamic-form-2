@@ -129,43 +129,40 @@ function DynamicForm(props)  {
             }
         });
 
-        //return initialValues object
         return initialValues;
     }
 
-    //const render = () => {
-        const initialValues = getInitialValues(props.fields);
-        return (
-            <div className="app">
-                <h1>Dynamic Form</h1>
-                <Formik
-                    onSubmit={(values) => { console.log(values) }}
-                    validationSchema={props.validation}
-                    initialValues={initialValues}
-                    render={(form) => {
-                        const numErrors =  Object.keys(form.errors).length;
-                        let legitError = false;
-                        if (numErrors > 0)
-                            Object.keys(form.errors).forEach(key => {
-                                console.log(key, form.errors[key]);
-                                if (form.touched[key] !== undefined)
-                                    legitError = true;
-                            });
-                        const errorMessageShow = numErrors && legitError ? 'error' : 'hidden';
-                        return <div>
-                            <form onSubmit={form.handleSubmit}>
-                                <div className={errorMessageShow}>
-                                    Please correct the errors below
-                                </div>
-                                {renderFields(props.fields)}
-                                <button type='submit' className='btn'>Submit</button>
-                            </form>
-                        </div>
-                    }}
-                />
-            </div>
-        );
-    //}
+    const initialValues = getInitialValues(props.fields);
+    return (
+        <div className="app">
+            <h1>Dynamic Form</h1>
+            <Formik
+                onSubmit={(values) => { console.log(values) }}
+                validationSchema={props.validation}
+                initialValues={initialValues}
+                render={(form) => {
+                    const numErrors =  Object.keys(form.errors).length;
+                    let legitError = false;
+                    if (numErrors > 0)
+                        Object.keys(form.errors).forEach(key => {
+                            console.log(key, form.errors[key]);
+                            if (form.touched[key] !== undefined)
+                                legitError = true;
+                        });
+                    const errorMessageShow = numErrors && legitError ? 'error' : 'hidden';
+                    return <div>
+                        <form onSubmit={form.handleSubmit}>
+                            <div className={errorMessageShow}>
+                                Please correct the errors below
+                            </div>
+                            {renderFields(props.fields)}
+                            <button type='submit' className='btn'>Submit</button>
+                        </form>
+                    </div>
+                }}
+            />
+        </div>
+    );
 }
 
 export default DynamicForm;
