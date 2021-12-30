@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Formik, Field } from 'formik';
-import './App.css';
+import '../App.css';
 
 function DynamicForm(props)  {
     const renderCheckBox = (input) => {

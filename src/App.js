@@ -1,6 +1,6 @@
 import React from 'react';
 import validation from './validation';
-import DynamicForm from './DynamicForm';
+import DynamicForm from './Components/DynamicForm';
 
 function App() {
   const fields = [
