@@ -1,9 +1,30 @@
 import React, { Fragment } from 'react';
 import { Formik, Field } from 'formik';
 import '../App.css';
-import CheckBox from './CheckBox';
 
 function DynamicForm(props)  {
+    const renderCheckBox = (input) => {
+        return (
+            <Fragment key={input.name}>
+                <label>{input.label}</label>
+                <Field
+                    name={input.name}
+                >
+                    {prop => {
+                        const { field } = prop;
+                        return (
+                            <input
+                                name={input.name}
+                                type="checkbox"
+                                checked={field.value}
+                                onChange={field.onChange} />
+                        );
+                    }}
+                </Field>
+            </Fragment>
+        );
+    }
+
     const renderTextArea = (input) => {
         return (
             <Fragment key={input.name}>
@@ -61,13 +82,13 @@ function DynamicForm(props)  {
     }
 
     const renderFields = (inputs) => {
-        return inputs.map((input, index) => {
+        return inputs.map(input => {
             if (input.type === 'select') {
                 return renderSelect(input);
             }
 
             if (input.type === 'checkbox') {
-                return <CheckBox key={index} input={input} />
+                return renderCheckBox(input);
             }
 
             if (input.type === 'textarea') {
