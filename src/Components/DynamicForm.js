@@ -1,34 +1,10 @@
 import React, { Fragment } from 'react';
 import { Formik, Field } from 'formik';
 import CheckBox from './CheckBox';
+import TextArea from './TextArea';
 import '../App.css';
 
 function DynamicForm(props)  {
-    const renderTextArea = (input) => {
-        return (
-            <Fragment key={input.name}>
-                <label>{input.label}</label>
-                <div>
-                    <Field
-                        name={input.name}
-                    >
-                        {props => {
-                            const { field } = props;
-                            const { errors, touched } = props.form;
-                            const hasError = errors[input.name] && touched[input.name] ? 'hasError' : '';
-                            return (
-                                <div>
-                                    <textarea {...field} id={hasError}>
-                                    </textarea>
-                                </div>
-                            );
-                        }}
-                    </Field>
-                </div>
-            </Fragment>
-        );
-    }
-
     const renderSelect = (input) => {
         return (
             <Fragment key={input.name}>
@@ -71,7 +47,7 @@ function DynamicForm(props)  {
             }
 
             if (input.type === 'textarea') {
-                return renderTextArea(input);
+                return <TextArea index={index} input={input} />
             }
 
             return (
