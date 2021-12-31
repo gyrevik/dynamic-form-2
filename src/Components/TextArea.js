@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { Field } from 'formik';
 
 const TextArea = (props) => {
-    const { input, index } = props;
+    const { input } = props;
     return (
-        <Fragment key={input.name}>
+        <Fragment>
             <label>{input.label}</label>
             <div>
                 <Field
@@ -16,7 +16,7 @@ const TextArea = (props) => {
                         const hasError = errors[input.name] && touched[input.name] ? 'hasError' : '';
                         return (
                             <div>
-                                <textarea key={index} {...field} id={hasError}>
+                                <textarea {...field} id={hasError}>
                                 </textarea>
                             </div>
                         );

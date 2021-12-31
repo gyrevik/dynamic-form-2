@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { Field } from 'formik';
 
 const CheckBox = (props) => {
-    const { input, index } = props; 
+    const { input } = props; 
     return (
-        <Fragment key={input.name}>
+        <Fragment>
             <label>{input.label}</label>
             <Field
                 name={input.name}
@@ -13,7 +13,6 @@ const CheckBox = (props) => {
                     const { field } = prop;
                     return (
                         <input
-                            key={index}
                             name={input.name}
                             type="checkbox"
                             checked={field.value}

@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { Field } from 'formik';
 
 const Select = (props) => {
-    const { input, index } = props;
+    const { input } = props;
     return (
-        <Fragment key={input.name}>
+        <Fragment>
             <label>{input.label}</label>
             <div>
                 <Field
@@ -19,7 +19,7 @@ const Select = (props) => {
                         const selectOptions = [defaultOption, ...options];
                         return (
                             <div className='dropdown'>
-                                <select key={index} value={field.value} {...field} id={hasError}>
+                                <select value={field.value} {...field} id={hasError}>
                                     {
                                         selectOptions
                                     }

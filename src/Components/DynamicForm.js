@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Formik, Field } from 'formik';
 import CheckBox from './CheckBox';
 import TextArea from './TextArea';
@@ -9,7 +9,7 @@ function DynamicForm(props)  {
     const renderFields = (inputs) => {
         return inputs.map((input, index) => {
             if (input.type === 'select') {
-                return <Select index={index} input={input} />
+                return <Select key={index} input={input} />
             }
 
             if (input.type === 'checkbox') {
@@ -17,7 +17,7 @@ function DynamicForm(props)  {
             }
 
             if (input.type === 'textarea') {
-                return <TextArea index={index} input={input} />
+                return <TextArea key={index} index={index} input={input} />
             }
 
             return (
