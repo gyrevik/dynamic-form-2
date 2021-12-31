@@ -2,44 +2,14 @@ import React, { Fragment } from 'react';
 import { Formik, Field } from 'formik';
 import CheckBox from './CheckBox';
 import TextArea from './TextArea';
+import Select from './Select';
 import '../App.css';
 
 function DynamicForm(props)  {
-    const renderSelect = (input) => {
-        return (
-            <Fragment key={input.name}>
-                <label>{input.label}</label>
-                <div>
-                    <Field
-                        name={input.name}
-                    >
-                        {props => {
-                            const { field } = props;
-                            const { errors, touched } = props.form;
-                            const hasError = errors[input.name] && touched[input.name] ? 'hasError' : '';
-                            const defaultOption = <option key='default' value='Please Select'>Please Select</option>;
-                            const options = input.data.map(i => <option key={i} value={i}> {i} </option>);
-                            const selectOptions = [defaultOption, ...options];
-                            return (
-                                <div className='dropdown'>
-                                    <select value={field.value} {...field} id={hasError}>
-                                        {
-                                            selectOptions
-                                        }
-                                    </select>
-                                </div>
-                            );
-                        }}
-                    </Field>
-                </div>
-            </Fragment>
-        );
-    }
-
     const renderFields = (inputs) => {
         return inputs.map((input, index) => {
             if (input.type === 'select') {
-                return renderSelect(input);
+                return <Select index={index} input={input} />
             }
 
             if (input.type === 'checkbox') {
