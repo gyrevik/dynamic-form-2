@@ -1,30 +1,9 @@
 import React, { Fragment } from 'react';
 import { Formik, Field } from 'formik';
+import CheckBox from './CheckBox';
 import '../App.css';
 
 function DynamicForm(props)  {
-    const renderCheckBox = (input) => {
-        return (
-            <Fragment key={input.name}>
-                <label>{input.label}</label>
-                <Field
-                    name={input.name}
-                >
-                    {prop => {
-                        const { field } = prop;
-                        return (
-                            <input
-                                name={input.name}
-                                type="checkbox"
-                                checked={field.value}
-                                onChange={field.onChange} />
-                        );
-                    }}
-                </Field>
-            </Fragment>
-        );
-    }
-
     const renderTextArea = (input) => {
         return (
             <Fragment key={input.name}>
@@ -82,13 +61,13 @@ function DynamicForm(props)  {
     }
 
     const renderFields = (inputs) => {
-        return inputs.map(input => {
+        return inputs.map((input, index) => {
             if (input.type === 'select') {
                 return renderSelect(input);
             }
 
             if (input.type === 'checkbox') {
-                return renderCheckBox(input);
+                return <CheckBox key={index} input={input} />
             }
 
             if (input.type === 'textarea') {
@@ -115,9 +94,6 @@ function DynamicForm(props)  {
                                 );
                             }}
                         </Field>
-
-
-
                     </div>
                 </div>
             );
@@ -153,7 +129,6 @@ function DynamicForm(props)  {
                     let legitError = false;
                     if (numErrors > 0)
                         Object.keys(form.errors).forEach(key => {
-                            console.log(key, form.errors[key]);
                             if (form.touched[key] !== undefined)
                                 legitError = true;
                         });
