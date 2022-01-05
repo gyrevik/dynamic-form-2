@@ -11,6 +11,7 @@ function App() {
     {label: 'Occupation', type: 'select', data: ['Teacher', 'Software Engineer', 'Doctor', 'Lawyer'], name: 'occupation', value: 'Please Select'},
     {label: 'Message', type: 'textarea', name: 'message', value: ''},
     {label: 'Agree to Terms & Conditions', type: 'checkbox', name: 'terms', value: false},
+    {label: 'Appointment Date 2', type: 'date-time-picker', name: 'date-time-picker-1', value: ''},
   ];
 
   return (
