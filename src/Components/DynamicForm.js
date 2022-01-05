@@ -3,6 +3,7 @@ import { Formik, Field } from 'formik';
 import CheckBox from './CheckBox';
 import TextArea from './TextArea';
 import Select from './Select';
+import { DatePicker } from 'react-formik-ui';
 import '../App.css';
 
 function DynamicForm(props)  {
@@ -18,6 +19,20 @@ function DynamicForm(props)  {
 
             if (input.type === 'textarea') {
                 return <TextArea key={index} index={index} input={input} />
+            }
+
+            if (input.type === 'date-time-picker') {
+                return <DatePicker
+                    key={index}
+                    name='dateExample5'
+                    label='Select a date and time'
+                    showTimeSelect
+                    timeFormat="HH:mm"
+                    timeIntervals={30}
+                    dateFormat="dd.MM.yyyy hh:mm aa"
+                    timeCaption="time"
+                    minDate={new Date()}
+                />
             }
 
             return (
