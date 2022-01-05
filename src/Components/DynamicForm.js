@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Field } from 'formik';
 import CheckBox from './CheckBox';
 import TextArea from './TextArea';
@@ -7,6 +7,7 @@ import { DatePicker } from 'react-formik-ui';
 import '../App.css';
 
 function DynamicForm(props)  {
+    const [startDate, setStartDate] = useState(new Date());
     const renderFields = (inputs) => {
         return inputs.map((input, index) => {
             if (input.type === 'select') {
@@ -24,7 +25,8 @@ function DynamicForm(props)  {
             if (input.type === 'date-time-picker') {
                 return <DatePicker
                     key={index}
-                    name='dateExample5'
+                    
+                    name={input.name}
                     label='Select a date and time'
                     showTimeSelect
                     timeFormat="HH:mm"
