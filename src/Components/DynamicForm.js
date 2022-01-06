@@ -45,7 +45,7 @@ function DynamicForm(props)  {
         theme: "blue"
     };
 
-    function clickMe(event) {
+    function deleteMe(event) {
         event.preventDefault();
         const filtered = fieldsArr.filter((t) => t.name !== event.target.id);
         setFieldsArr(filtered);
@@ -97,7 +97,7 @@ function DynamicForm(props)  {
                                             id={hasError}
                                             type='text'
                                         />  
-                                        <Button id={input.name} onClick={clickMe}>Delete</Button>
+                                        <Button id={input.name} onClick={deleteMe}>Delete</Button>
                                     </>
                                 );
                             }}
