@@ -8,7 +8,7 @@ import styled from "styled-components";
 import '../App.css';
 
 function DynamicForm(props)  {
-    const [fieldsArr] = useState(props.fields);
+    const [fieldsArr, setFieldsArr] = useState(props.fields);
 
     const theme = {
         blue: {
@@ -47,7 +47,8 @@ function DynamicForm(props)  {
 
     function clickMe(event) {
         event.preventDefault();
-        console.log('event.target.id:', event.target.id)
+        const filtered = fieldsArr.filter((t) => t.name !== event.target.id);
+        setFieldsArr(filtered);
     }
 
     const renderFields = (inputs) => {
