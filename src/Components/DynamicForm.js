@@ -24,7 +24,6 @@ function DynamicForm(props)  {
             if (input.type === 'date-time-picker') {
                 return <DatePicker
                     key={index}
-                    
                     name={input.name}
                     label='Select a date and time'
                     showTimeSelect
