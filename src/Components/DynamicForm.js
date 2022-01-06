@@ -66,17 +66,22 @@ function DynamicForm(props)  {
             }
 
             if (input.type === 'date-time-picker') {
-                return <DatePicker
-                    key={index}
-                    name={input.name}
-                    label='Select a date and time'
-                    showTimeSelect
-                    timeFormat="HH:mm"
-                    timeIntervals={30}
-                    dateFormat="dd.MM.yyyy hh:mm aa"
-                    timeCaption="time"
-                    minDate={new Date()}
-                />
+                return (
+                    <>
+                        <DatePicker
+                            key={index}
+                            name={input.name}
+                            label='Select a date and time'
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={30}
+                            dateFormat="dd.MM.yyyy hh:mm aa"
+                            timeCaption="time"
+                            minDate={new Date()}
+                        />
+                        <Button id={input.name} onClick={deleteMe}>Delete</Button>
+                    </>
+                )
             }
 
             return (
