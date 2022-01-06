@@ -7,7 +7,6 @@ import { DatePicker } from 'react-formik-ui';
 import '../App.css';
 
 function DynamicForm(props)  {
-    const [startDate, setStartDate] = useState(new Date());
     const renderFields = (inputs) => {
         return inputs.map((input, index) => {
             if (input.type === 'select') {
