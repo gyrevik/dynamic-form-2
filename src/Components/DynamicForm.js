@@ -49,11 +49,14 @@ function DynamicForm(props)  {
                                 const { errors, touched } = props.form;
                                 const hasError = errors[input.name] && touched[input.name] ? 'hasError' : '';
                                 return (
-                                    <input
-                                        {...field}
-                                        id={hasError}
-                                        type='text'
-                                    />
+                                    <>
+                                        <input
+                                            {...field}
+                                            id={hasError}
+                                            type='text'
+                                        />
+                                        <div></div>
+                                    </>
                                 );
                             }}
                         </Field>
