@@ -1,13 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Formik, Field } from 'formik';
 import CheckBox from './CheckBox';
 import TextArea from './TextArea';
 import Select from './Select';
 import { DatePicker } from 'react-formik-ui';
+import styled from "styled-components";
 import '../App.css';
 
 function DynamicForm(props)  {
     const [fieldsArr] = useState(props.fields);
+
+    const theme = {
+        blue: {
+            default: "#3f51b5",
+            hover: "#283593"
+        },
+        pink: {
+            default: "#e91e63",
+            hover: "#ad1457"
+        }
+    };
+
+    const Button = styled.button`
+        background-color: ${(props) => theme[props.theme].default};
+        color: white;
+        padding: 5px 15px;
+        border-radius: 5px;
+        outline: 0;
+        text-transform: uppercase;
+        margin: 10px 0px;
+        cursor: pointer;
+        box-shadow: 0px 2px 2px lightgray;
+        transition: ease background-color 250ms;
+        &:hover {
+            background-color: ${(props) => theme[props.theme].hover};
+        }
+        &:disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+    `;
+
+    Button.defaultProps = {
+        theme: "blue"
+    };
+
+    function clickMe(event) {
+        event.preventDefault();
+        console.log('event.target.id:', event.target.id)
+    }
 
     const renderFields = (inputs) => {
         return inputs.map((input, index) => {
@@ -55,7 +96,9 @@ function DynamicForm(props)  {
                                             id={hasError}
                                             type='text'
                                         />
-                                        <div></div>
+                                        <div>        
+                                            <Button id={input.name} onClick={clickMe}>Delete</Button>
+                                        </div>
                                     </>
                                 );
                             }}
