@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Field } from 'formik';
 import CheckBox from './CheckBox';
 import TextArea from './TextArea';
@@ -7,6 +7,8 @@ import { DatePicker } from 'react-formik-ui';
 import '../App.css';
 
 function DynamicForm(props)  {
+    const [fieldsArr] = useState(props.fields);
+
     const renderFields = (inputs) => {
         return inputs.map((input, index) => {
             if (input.type === 'select') {
@@ -65,7 +67,7 @@ function DynamicForm(props)  {
         // declare an empty initialValues object
         const initialValues = {};
         // loop over fields array
-        // if prop does not exit in the initialValues object,
+        // if prop does not exist in the initialValues object,
         // pluck off the name and value props and add it to the initialValues object;
         inputs.forEach(field => {
             if (!initialValues[field.name]) {
@@ -76,7 +78,8 @@ function DynamicForm(props)  {
         return initialValues;
     }
 
-    const initialValues = getInitialValues(props.fields);
+    const initialValues = getInitialValues(fieldsArr);
+
     return (
         <div className="app">
             <h1>Dynamic Form</h1>
@@ -100,7 +103,7 @@ function DynamicForm(props)  {
                                 <div className={errorMessageShow}>
                                     Please correct the errors below
                                 </div>
-                                {renderFields(props.fields)}
+                                {renderFields(fieldsArr)}
                                 <button type='submit' className='btn'>Submit</button>
                             </form>
                         </div>
