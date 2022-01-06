@@ -96,10 +96,8 @@ function DynamicForm(props)  {
                                             {...field}
                                             id={hasError}
                                             type='text'
-                                        />
-                                        <div>        
-                                            <Button id={input.name} onClick={clickMe}>Delete</Button>
-                                        </div>
+                                        />  
+                                        <Button id={input.name} onClick={clickMe}>Delete</Button>
                                     </>
                                 );
                             }}
