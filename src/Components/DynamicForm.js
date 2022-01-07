@@ -67,7 +67,12 @@ function DynamicForm(props)  {
             }
 
             if (input.type === 'textarea') {
-                return <TextArea key={index} index={index} input={input} />
+                return (
+                    <>
+                        <TextArea key={index} index={index} input={input} />
+                        <Button id={input.name} onClick={deleteMe}>Delete</Button>
+                    </>
+                )
             }
 
             if (input.type === 'date-time-picker') {
