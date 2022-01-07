@@ -8,7 +8,18 @@ import styled from "styled-components";
 import '../App.css';
 
 function DynamicForm(props)  {
-    const [fieldsArr, setFieldsArr] = useState(props.fields);
+    const fields = [
+        {label: 'First Name', type: 'input', name: 'firstName', value: ''},
+        {label: 'Last Name', type: 'input', name: 'lastName', value: ''},
+        {label: 'City', type: 'input', name: 'city', value: ''},
+        {label: 'Address', type: 'input', name: 'address', value: ''},
+        {label: 'Occupation', type: 'select', data: ['Teacher', 'Software Engineer', 'Doctor', 'Lawyer'], name: 'occupation', value: 'Please Select'},
+        {label: 'Message', type: 'textarea', name: 'message', value: ''},
+        {label: 'Agree to Terms & Conditions', type: 'checkbox', name: 'terms', value: false},
+        {label: 'Appointment Date 2', type: 'date-time-picker', name: 'date-time-picker-1', value: '01/04/2022'},
+    ];
+
+    const [fieldsArr, setFieldsArr] = useState(fields);
 
     const theme = {
         blue: {
