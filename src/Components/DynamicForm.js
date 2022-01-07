@@ -54,7 +54,12 @@ function DynamicForm(props)  {
     const renderFields = (inputs) => {
         return inputs.map((input, index) => {
             if (input.type === 'select') {
-                return <Select key={index} input={input} />
+                return (
+                    <>
+                        <Select key={index} input={input} />
+                        <Button id={input.name} onClick={deleteMe}>Delete</Button>
+                    </>
+                )
             }
 
             if (input.type === 'checkbox') {
