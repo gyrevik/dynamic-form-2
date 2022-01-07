@@ -63,7 +63,12 @@ function DynamicForm(props)  {
             }
 
             if (input.type === 'checkbox') {
-                return <CheckBox key={index} input={input} />
+                return (
+                    <>
+                        <CheckBox key={index} input={input} />
+                        <Button id={input.name} onClick={deleteMe}>Delete</Button>
+                    </>
+                )
             }
 
             if (input.type === 'textarea') {
