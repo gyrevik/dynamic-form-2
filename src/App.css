@@ -86,3 +86,7 @@ label {
 .hidden {
   display: none;
 }
+
+section {
+  display: flex;
+}

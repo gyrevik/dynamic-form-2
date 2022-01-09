@@ -8,7 +8,7 @@ import styled from "styled-components";
 import '../App.css';
 
 function DynamicForm(props)  {
-    const fields = [
+    const fieldSet1 = [
         {label: 'First Name', type: 'input', name: 'firstName', value: ''},
         {label: 'Last Name', type: 'input', name: 'lastName', value: ''},
         {label: 'City', type: 'input', name: 'city', value: ''},
@@ -19,7 +19,7 @@ function DynamicForm(props)  {
         {label: 'Appointment Date 2', type: 'date-time-picker', name: 'date-time-picker-1', value: '01/04/2022'},
     ];
 
-    const [fieldsArr, setFieldsArr] = useState(fields);
+    const [fieldsArr, setFieldsArr] = useState(fieldSet1);
 
     const theme = {
         blue: {
@@ -174,15 +174,20 @@ function DynamicForm(props)  {
                         });
                     const errorMessageShow = numErrors && legitError ? 'error' : 'hidden';
                     return (
-                        <div>
-                            <form onSubmit={form.handleSubmit}>
-                                <div className={errorMessageShow}>
-                                    Please correct the errors below
+                        <>
+                            <section>
+                                <div>left div</div>
+                                <div>
+                                    <form onSubmit={form.handleSubmit}>
+                                        <div className={errorMessageShow}>
+                                            Please correct the errors below
+                                        </div>
+                                        {renderFields(fieldsArr)}
+                                        <button type='submit' className='btn'>Submit</button>
+                                    </form>
                                 </div>
-                                {renderFields(fieldsArr)}
-                                <button type='submit' className='btn'>Submit</button>
-                            </form>
-                        </div>
+                            </section>
+                        </>
                     )
                 }}
             </Formik>
