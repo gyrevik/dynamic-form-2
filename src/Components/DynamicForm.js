@@ -159,38 +159,43 @@ function DynamicForm(props)  {
     return (
         <div className="app">
             <h1>Dynamic Form</h1>
-            <Formik
-                onSubmit={(values) => { console.log(values) }}
-                validationSchema={props.validation}
-                initialValues={initialValues}
-            >
-                {form => {
-                    const numErrors =  Object.keys(form.errors).length;
-                    let legitError = false;
-                    if (numErrors > 0)
-                        Object.keys(form.errors).forEach(key => {
-                            if (form.touched[key] !== undefined)
-                                legitError = true;
-                        });
-                    const errorMessageShow = numErrors && legitError ? 'error' : 'hidden';
-                    return (
-                        <>
-                            <section>
-                                <div>left div</div>
-                                <div>
-                                    <form onSubmit={form.handleSubmit}>
-                                        <div className={errorMessageShow}>
-                                            Please correct the errors below
-                                        </div>
-                                        {renderFields(fieldsArr)}
-                                        <button type='submit' className='btn'>Submit</button>
-                                    </form>
-                                </div>
-                            </section>
-                        </>
-                    )
-                }}
-            </Formik>
+            <section>
+                <div>
+                    <select>
+                        <option value="grapefruit">Grapefruit</option>
+                        <option value="lime">Lime</option>
+                        <option selected value="coconut">Coconut</option>
+                        <option value="mango">Mango</option>
+                    </select>
+                </div>
+                <Formik
+                    onSubmit={(values) => { console.log(values) }}
+                    validationSchema={props.validation}
+                    initialValues={initialValues}
+                >
+                    {form => {
+                        const numErrors =  Object.keys(form.errors).length;
+                        let legitError = false;
+                        if (numErrors > 0)
+                            Object.keys(form.errors).forEach(key => {
+                                if (form.touched[key] !== undefined)
+                                    legitError = true;
+                            });
+                        const errorMessageShow = numErrors && legitError ? 'error' : 'hidden';
+                        return (
+                            <div>
+                                <form onSubmit={form.handleSubmit}>
+                                    <div className={errorMessageShow}>
+                                        Please correct the errors below
+                                    </div>
+                                    {renderFields(fieldsArr)}
+                                    <button type='submit' className='btn'>Submit</button>
+                                </form>
+                            </div>
+                        )
+                    }}
+                </Formik>
+            </section>
         </div>
     );
 }
